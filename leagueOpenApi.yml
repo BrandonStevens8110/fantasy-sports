@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  title: Your Spring Boot API
+  version: 1.0.0
+tags:
+  - name: league
+paths:
+  /league:
+    post:
+      summary: Create a new league
+      tags:
+        - league
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FantasyDTO'
+      responses:
+        '200':
+          description: League created successfully
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    FantasyDTO:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The unique identifier for the league
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID for the league
+        name:
+          type: string
+          description: The name of the league
